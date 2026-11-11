@@ -23,3 +23,39 @@ header .brand-icon{width:65px;height:53px;object-fit:contain;flex:none;filter:dr
 .hero .screen-foot i{opacity:.85}
 @media(max-width:900px){.hero-copy{max-width:690px}.hero-inner{gap:16px}}
 @media(max-width:600px){.hero h1{font-size:clamp(39px,10vw,54px)}.hero .cta .btn{min-width:0}.hero p{margin-top:18px}.screen-preview-label{font-size:9px}}
+
+/* Unified editorial hierarchy across homepage and About page */
+.section{padding-block:76px}
+.section-head{align-items:end;gap:36px;margin-bottom:28px}
+.section-head .muted{max-width:375px;font-size:15px;line-height:1.65}
+.section .tag,.about-hero .eyebrow{font-size:11px;letter-spacing:.16em}
+.section h2{line-height:1.12}
+.service{min-height:198px;padding:22px 23px;align-content:start}
+.service h3{font-size:20px;line-height:1.17;letter-spacing:-.025em}
+.service p{font-size:13px;line-height:1.53;margin:9px 0 0}
+.service a{font-size:12px;font-weight:800;margin-top:14px}
+.filters{margin:22px 0 27px}
+.filter{font-size:13px;padding:9px 15px}
+.highlight{border-block-width:1px;box-shadow:none}
+.highlight .steps{gap:26px}
+.highlight .step h3{font-size:23px}
+.highlight .step p{line-height:1.55;max-width:215px}
+.show{min-height:230px}
+.show h3{font-size:25px}
+.show p{font-size:13px;line-height:1.55}
+.concept-note{display:block;font-size:11px;letter-spacing:.015em}
+.about-teaser p{font-size:16px;line-height:1.7;max-width:480px}
+.contact{gap:55px;align-items:start}
+.contact h2{font-size:clamp(35px,3.7vw,52px);line-height:1.1;max-width:510px}
+.contact p{font-size:15px;line-height:1.7;max-width:430px}
+.contact form{max-width:520px;width:100%}
+.about-hero{padding:88px 0}
+.about-hero h1{font-size:clamp(45px,5vw,74px);max-width:810px}
+.about-hero p{font-size:18px;line-height:1.65;max-width:610px}
+.story-grid{gap:58px}
+.story-grid h2{font-size:clamp(35px,3.8vw,56px)}
+.story-grid p{font-size:16px;line-height:1.75}
+.story-grid .symbol{font-size:80px}
+.about-hero+.section .story-grid{min-height:325px}
+@media(max-width:900px){.section-head{align-items:start}.section-head .muted{max-width:450px}.service{min-height:210px}.contact{gap:27px}}
+@media(max-width:600px){.section{padding-block:58px}.section-head{display:block;margin-bottom:21px}.section-head .muted{margin-top:18px}.services{gap:12px}.service{min-height:184px;padding:20px}.service h3{font-size:19px}.filters{gap:6px}.filter{padding:8px 11px;font-size:12px}.contact{padding:28px 23px}.contact h2{font-size:36px}.about-hero{padding:72px 0}.about-hero p{font-size:16px}.story-grid{gap:25px}.story-grid .symbol{display:none}}
