@@ -210,3 +210,9 @@ header .brand-icon{display:block;width:84px;height:58px;object-fit:contain;flex:
 .name-story-image{min-height:300px}
 .name-story-image .approved-name-logo{width:min(100%,200px);max-width:200px}
 @media(max-width:700px){.name-story-image{min-height:240px}.name-story-image .approved-name-logo{width:min(100%,200px)}}
+
+/* User-supplied Great Wall founder photograph. Keep portrait's original framing. */
+.founder-portrait{aspect-ratio:3/4;object-fit:cover;object-position:center 38%;border-radius:22px}
+.about-teaser .founder-teaser-photo{max-width:435px;min-height:0;aspect-ratio:3/4;justify-self:center}
+.about-teaser .founder-teaser-photo img{height:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 38%}
+@media(max-width:700px){.about-teaser .founder-teaser-photo{max-width:310px;aspect-ratio:3/4}.about-teaser .founder-teaser-photo img{height:100%}}
