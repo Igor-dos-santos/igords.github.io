@@ -1,0 +1,56 @@
+name: Import approved Caju Clover brand assets
+on:
+  push:
+    paths:
+      - 'caju-clover-preview/import-logo-trigger.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          persist-credentials: true
+      - name: Download brand image
+        env:
+          FULL_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:1254/quality:100/uri:ifs%3A%2F%2FM%2F937d8b88-098a-46e6-857c-27efbede1b3b/watermark:F/width:1254?csig=AAAAAAAAAAAAAAAAAAAAAJ5IKZHbRnSPFzbA1AFdadTQsP_Zooy2iepESyE4RQnr&exp=1794426140&osig=AAAAAAAAAAAAAAAAAAAAABXOOvpHSePpvI2fL75HR13jB5VUpwLp567YhW8vUUVN&signer=media-rpc&token=AAIAAU0AJDkzN2Q4Yjg4LTA5OGEtNDZlNi04NTdjLTI3ZWZiZWRlMWIzYgAAAAABocwh9WBO3uxCd3zL2lwhX04BWdpA26VjhvPZeNAa_z7MCWdF4A&x-canva-quality=thumbnail"
+          FALLBACK_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F937d8b88-098a-46e6-857c-27efbede1b3b/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAJ5IKZHbRnSPFzbA1AFdadTQsP_Zooy2iepESyE4RQnr&exp=1794426140&osig=AAAAAAAAAAAAAAAAAAAAABXOOvpHSePpvI2fL75HR13jB5VUpwLp567YhW8vUUVN&signer=media-rpc&token=AAIAAU0AJDkzN2Q4Yjg4LTA5OGEtNDZlNi04NTdjLTI3ZWZiZWRlMWIzYgAAAAABocwh9WBO3uxCd3zL2lwhX04BWdpA26VjhvPZeNAa_z7MCWdF4A&x-canva-quality=thumbnail"
+        run: |
+          mkdir -p caju-clover-preview/assets
+          curl -L --retry 2 --connect-timeout 15 --fail -s "$FULL_URL" -o /tmp/full-logo.png || true
+          python -m pip install --quiet Pillow
+          python - <<'PY'
+          from PIL import Image
+          import os
+          p="/tmp/full-logo.png"
+          try:
+              im=Image.open(p)
+              if im.width<400: os.remove(p)
+          except Exception:
+              if os.path.exists(p): os.remove(p)
+          PY
+          if [ ! -f /tmp/full-logo.png ]; then curl -L --retry 2 --fail -s "$FALLBACK_URL" -o /tmp/full-logo.png; fi
+          python - <<'PY'
+          from PIL import Image
+          im=Image.open("/tmp/full-logo.png").convert("RGBA")
+          im.save("caju-clover-preview/assets/logo-approved.png",optimize=True)
+          width,height=im.size
+          mark=im.crop((int(width*.035),int(height*.04),int(width*.958),int(height*.67)))
+          mark.thumbnail((520,370),Image.Resampling.LANCZOS)
+          mark.save("caju-clover-preview/assets/logo-mark.png",optimize=True)
+          icon=Image.new("RGBA",(128,128),(0,0,0,0))
+          small=mark.copy();small.thumbnail((124,115),Image.Resampling.LANCZOS)
+          icon.alpha_composite(small,((128-small.width)//2,(128-small.height)//2))
+          icon.save("caju-clover-preview/assets/favicon.png",optimize=True)
+          print("Uploaded artwork dimensions:",im.size)
+          PY
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add caju-clover-preview/assets/logo-approved.png caju-clover-preview/assets/logo-mark.png caju-clover-preview/assets/favicon.png
+          git commit -m "Import current Caju & Clover approved logo, mark and favicon" || exit 0
+          git push origin HEAD:master
