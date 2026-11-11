@@ -1,0 +1,47 @@
+name: Import founder portrait
+on:
+  push:
+    paths:
+      - 'caju-clover-preview/import-founder-trigger.txt'
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: Download and optimise portrait
+        env:
+          FULL_URL: "https://media.canva.com/v2/image-resize/format:JPG/height:1448/quality:75/uri:ifs%3A%2F%2FM%2F551c5616-7fcc-4bd5-8c45-2c7172439ab1/watermark:F/width:1086?csig=AAAAAAAAAAAAAAAAAAAAAAuDo5AjQuOjQMovZHZ71cbMDiZdaFG7vngfrXsvnj6v&exp=1794426465&osig=AAAAAAAAAAAAAAAAAAAAAIYW3vdcizi9eUUsTtESrWFGihhP6a7BX-2zpsY0AWmM&signer=media-rpc&token=AAIAAU0AJDU1MWM1NjE2LTdmY2MtNGJkNS04YzQ1LTJjNzE3MjQzOWFiMQAAAAABocwm6ug0eSa7yRlVb-8p06q4mHTEJNReri1nXW-u-kLAzGSBog&x-canva-quality=thumbnail"
+          FALLBACK_URL: "https://media.canva.com/v2/image-resize/format:JPG/height:200/quality:75/uri:ifs%3A%2F%2FM%2F551c5616-7fcc-4bd5-8c45-2c7172439ab1/watermark:F/width:150?csig=AAAAAAAAAAAAAAAAAAAAAAuDo5AjQuOjQMovZHZ71cbMDiZdaFG7vngfrXsvnj6v&exp=1794426465&osig=AAAAAAAAAAAAAAAAAAAAAIYW3vdcizi9eUUsTtESrWFGihhP6a7BX-2zpsY0AWmM&signer=media-rpc&token=AAIAAU0AJDU1MWM1NjE2LTdmY2MtNGJkNS04YzQ1LTJjNzE3MjQzOWFiMQAAAAABocwm6ug0eSa7yRlVb-8p06q4mHTEJNReri1nXW-u-kLAzGSBog&x-canva-quality=thumbnail"
+        run: |
+          mkdir -p caju-clover-preview/assets
+          curl -L --retry 2 --connect-timeout 15 --fail -s "$FULL_URL" -o /tmp/portrait.jpg || true
+          python -m pip install --quiet Pillow
+          python - <<'PY'
+          from PIL import Image
+          import os
+          try:
+              im=Image.open("/tmp/portrait.jpg");im.load()
+              if im.width<450:os.remove("/tmp/portrait.jpg")
+          except Exception:
+              if os.path.exists("/tmp/portrait.jpg"):os.remove("/tmp/portrait.jpg")
+          PY
+          if [ ! -f /tmp/portrait.jpg ];then curl -L --retry 2 --fail -s "$FALLBACK_URL" -o /tmp/portrait.jpg;fi
+          python - <<'PY'
+          from PIL import Image,ImageOps
+          im=Image.open('/tmp/portrait.jpg').convert('RGB')
+          im=ImageOps.exif_transpose(im)
+          if im.width>1000:im.thumbnail((1086,1448),Image.Resampling.LANCZOS)
+          im.save('caju-clover-preview/assets/founder-igor.jpg',quality=88,optimize=True)
+          print('Founder photo imported:',im.size)
+          PY
+      - name: Commit founder image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add caju-clover-preview/assets/founder-igor.jpg
+          git commit -m "Add founder photograph to Caju Clover site" || exit 0
+          git push origin HEAD:master
