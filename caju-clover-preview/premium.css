@@ -198,3 +198,10 @@ header .brand-icon{width:65px;height:53px;object-fit:contain;flex:none;filter:dr
 /* Approved cashew-and-clover symbol in About story: same asset as navigation */
 .name-story-image .approved-name-logo{width:min(72%,275px);height:auto;object-fit:contain;filter:drop-shadow(0 15px 25px rgba(0,0,0,.38)) drop-shadow(0 0 14px rgba(247,186,76,.22));}
 @media(max-width:700px){.name-story-image .approved-name-logo{width:min(72%,240px)}}
+
+/* Shared new brand image throughout homepage and About page */
+header .brand-icon{display:block;width:84px;height:58px;object-fit:contain;flex:none;filter:drop-shadow(0 0 8px rgba(246,177,70,.28))}
+.name-story-image{background:radial-gradient(circle at 50% 45%,#fffdf0,#f4eacb 70%,#e8ddbc);border:1px solid #d7cba5;border-radius:26px;min-height:385px;box-shadow:0 15px 40px #001b183d;padding:22px;overflow:hidden}
+.name-story-image .approved-name-logo{display:block;width:min(100%,320px);height:auto;aspect-ratio:1/1;object-fit:contain;image-rendering:auto;filter:drop-shadow(0 8px 12px #14331a25)}
+.name-story-image .name-orbit{display:none}
+@media(max-width:700px){header .brand-icon{width:60px;height:44px}.name-story-image{min-height:265px;padding:14px}.name-story-image .approved-name-logo{width:min(100%,230px)}}
