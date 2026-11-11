@@ -1,0 +1,33 @@
+name: Import Mount Fuji founder picture
+on:
+  push:
+    paths: ['caju-clover-preview/fuji-trigger.txt']
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: Download image
+        env:
+          SOURCE_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:200/quality:100/uri:ifs%3A%2F%2FM%2F4d419821-dcd2-4daa-8d8f-b0282811e96b/watermark:F/width:160?csig=AAAAAAAAAAAAAAAAAAAAAFuoiEf0D5zos99PCM7elOz2a43mTTUjnohLU4KXbxau&exp=1794455293&osig=AAAAAAAAAAAAAAAAAAAAAPZHTgJnfmLnHk_1f2jRogr7RQfd4DTKN1GhY5R3A7fT&signer=media-rpc&token=AAIAAU0AJDRkNDE5ODIxLWRjZDItNGRhYS04ZDhmLWIwMjgyODExZTk2YgAAAAABoc3ezEhmFHY-gjktzbDAhS5r8c_ZCjEJbFavdhoNynHf48EyDA&x-canva-quality=thumbnail"
+        run: |
+          mkdir -p caju-clover-preview/assets
+          curl -L --retry 3 --fail -s "$SOURCE_URL" -o /tmp/fuji.png
+          python -m pip install --quiet Pillow
+          python - <<'PY'
+          from PIL import Image
+          im=Image.open('/tmp/fuji.png').convert('RGB')
+          print("Imported image dimensions:",im.size)
+          im.save('caju-clover-preview/assets/founder-fuji.jpg',quality=90,optimize=True)
+          PY
+      - name: Commit image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add caju-clover-preview/assets/founder-fuji.jpg
+          git commit -m "Add updated Mount Fuji founder portrait" || exit 0
+          git push origin HEAD:master
