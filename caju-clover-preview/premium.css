@@ -82,3 +82,30 @@ header .brand-icon{width:65px;height:53px;object-fit:contain;flex:none;filter:dr
 @media(max-width:1020px){.hero-performance{right:0;top:0;width:174px}.hero-seo-badge{right:3px;bottom:1px}}
 @media(max-width:600px){.process-section .process-intro{margin-bottom:26px}.process-section .process-intro h2{margin-top:11px}.process-section .steps{margin-top:22px}.hero-performance{width:139px;top:4px;right:0;padding:10px;border-radius:12px}.hero-performance>span{font-size:10px}.hero-performance svg{height:43px}.hero-performance small{font-size:8px}.hero-seo-badge{right:0;bottom:4px;padding:8px 10px;gap:8px}.hero-seo-badge strong{font-size:10px}.seo-bars{transform:scale(.8);transform-origin:right center}}
 @media(prefers-reduced-motion:reduce){.hero-performance,.hero-seo-badge{animation:none}}
+
+/* Interactive two-sided service cards */
+.services .service-flip{height:236px;min-height:236px;display:block;padding:0;overflow:visible;background:transparent;border:0;box-shadow:none;perspective:1100px}
+.service-flip .service-flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.75,.2,1);border-radius:19px}
+.service-flip.is-flipped .service-flip-inner{transform:rotateY(180deg)}
+.service-flip .service-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;border:1px solid #e5dfce;border-radius:19px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 5px 15px #49260012;overflow:hidden}
+.service-flip .service-front{background:linear-gradient(145deg,#fffefa,#faf2e4)}
+.service-flip .service-flip-trigger{display:flex;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:14px;border:0;background:none;color:#143b28;cursor:pointer;text-align:center}
+.service-flip .service-front .ic{grid-row:auto;flex:none;margin:0;width:63px;height:63px}
+.service-flip .service-front .ic svg{width:37px;height:37px}
+.service-flip .service-title{font:700 21px/1.18 Outfit,sans-serif;letter-spacing:-.025em;max-width:240px}
+.service-flip .flip-hint{color:#517760;font-size:12px;font-weight:700}
+.service-flip .flip-hint span{color:#b78326;margin-left:3px}
+.service-flip:hover .service-front,.service-flip:focus-within .service-front{border-color:#a6c78b;box-shadow:0 10px 28px #154d2626}
+.service-flip .service-back{transform:rotateY(180deg);align-items:flex-start;justify-content:center;background:linear-gradient(135deg,#103f2c,#082c22);color:#fff;border-color:#a3b46a;box-shadow:0 10px 26px #0c2c2270}
+.service-flip .service-back h3{font-size:21px;line-height:1.15;letter-spacing:-.035em;margin:10px 0 0;max-width:275px;color:#fff}
+.service-flip .service-back p{grid-column:auto;margin:10px 0 16px;color:#d1e4d6;font-size:13px;line-height:1.5;max-width:275px}
+.service-flip .flip-back-btn{position:absolute;right:16px;top:13px;padding:5px 7px;color:#c4ddc4;background:transparent;border:0;font-size:11px;font-weight:700;cursor:pointer}
+.service-flip .service-cta{grid-column:auto;display:inline-flex;gap:12px;align-items:center;background:#f6b345;color:#123b2a;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:800;box-shadow:0 3px 13px #0003;margin:0;white-space:nowrap}
+.service-flip .service-cta:hover{background:#ffd17a;transform:translateY(-1px)}
+.service-flip.is-flipped .service-front{pointer-events:none}
+.service-flip:not(.is-flipped) .service-back{pointer-events:none}
+.service-flip:focus-within{outline-offset:3px}
+.service-flip[hidden]{display:none}
+@media(max-width:900px){.services .service-flip{height:228px;min-height:228px}}
+@media(max-width:600px){.services .service-flip{height:222px;min-height:222px}.service-flip .service-title{font-size:21px}.service-flip .service-face{padding:20px}}
+@media(prefers-reduced-motion:reduce){.service-flip .service-flip-inner{transition:none}}
