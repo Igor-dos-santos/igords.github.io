@@ -222,3 +222,15 @@ header .brand-icon{display:block;width:84px;height:58px;object-fit:contain;flex:
 .mobile-about:hover,.mobile-about:focus-visible{background:#f6ba5140;border-color:#f6ba51;color:#fff}
 @media(max-width:700px){.mobile-about{display:inline-flex;align-items:center;justify-content:center}.nav-actions{gap:8px}}
 @media(max-width:440px){.mobile-about{padding:7px 10px;font-size:12px}.nav{gap:7px}.nav-actions{gap:5px}.brand-name{font-size:16px}.brand-name small{font-size:7px;letter-spacing:.1em}header .brand-icon{width:43px;height:35px}.language-switch{padding:2px}.language-button{min-width:27px;min-height:29px;font-size:16px}}
+
+
+/* Give expanded flip-card descriptions comfortable, consistent reading space. */
+.services .service-flip{height:320px;min-height:320px}
+.service-flip .service-face{padding:25px 24px}
+.service-flip .service-back{justify-content:flex-start;align-items:flex-start;padding-top:47px}
+.service-flip .service-back h3{font-size:20px;line-height:1.2;margin:0 0 10px;max-width:none}
+.service-flip .service-back p{font-size:13px;line-height:1.57;margin:0 0 15px;max-width:none}
+.service-flip .service-cta{margin-top:auto;flex-shrink:0}
+@media(max-width:1000px){.services .service-flip{height:350px;min-height:350px}}
+@media(max-width:600px){.services .service-flip{height:320px;min-height:320px}.service-flip .service-back{padding:42px 23px 20px}.service-flip .service-back h3{font-size:20px}.service-flip .service-back p{font-size:14px;line-height:1.58}}
+@media(max-width:380px){.services .service-flip{height:355px;min-height:355px}}
