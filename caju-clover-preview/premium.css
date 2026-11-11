@@ -109,3 +109,27 @@ header .brand-icon{width:65px;height:53px;object-fit:contain;flex:none;filter:dr
 @media(max-width:900px){.services .service-flip{height:228px;min-height:228px}}
 @media(max-width:600px){.services .service-flip{height:222px;min-height:222px}.service-flip .service-title{font-size:21px}.service-flip .service-face{padding:20px}}
 @media(prefers-reduced-motion:reduce){.service-flip .service-flip-inner{transition:none}}
+
+
+/* Bilingual navigation: Irish English and Brazilian Portuguese */
+.nav-actions{display:flex;align-items:center;gap:14px;flex:none}
+.language-switch{display:flex;align-items:center;gap:3px;border:1px solid rgba(227,243,211,.28);padding:4px;border-radius:99px;background:rgba(0,24,15,.35);flex:none}
+.language-button{display:grid;place-items:center;min-width:35px;min-height:34px;padding:4px;border:1px solid transparent;border-radius:99px;background:transparent;color:#fff;cursor:pointer;font-size:20px;line-height:1;filter:saturate(.85);transition:background .2s,border-color .2s,transform .2s}
+.language-button:hover{background:#ffffff1e;transform:translateY(-1px)}
+.language-button.active{background:#d5edbb20;border-color:#e3c475a6;filter:saturate(1.15);box-shadow:0 0 12px #f7bc5730}
+.language-button:focus-visible{outline:2px solid #ffcf71;outline-offset:2px}
+
+/* Replaces the generic four-step timeline with useful buying guidance */
+.value-section .value-intro{max-width:690px;margin:0 auto 38px;text-align:center}
+.value-section .value-intro .tag{color:#f1c879}
+.value-section .value-intro h2{font-size:clamp(34px,3.5vw,53px);margin:12px auto 16px;line-height:1.12}
+.value-section .value-intro p{max-width:510px;margin:0 auto;color:#c7dac8;font-size:16px;line-height:1.6}
+.value-section .value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.value-section .value-item{border:1px solid #55876a88;border-radius:19px;padding:26px 22px;background:linear-gradient(145deg,#13503855,#062a20b3);box-shadow:0 10px 25px #011e1530;min-height:218px}
+.value-section .value-icon{display:flex;align-items:center;justify-content:center;color:#f1c977;background:#164b34;border:1px solid #82b37c88;width:48px;height:48px;border-radius:12px;font-size:25px;margin-bottom:20px}
+.value-section .value-item h3{font-size:21px;color:white;line-height:1.18;margin-bottom:12px}
+.value-section .value-item p{color:#c7dacb;font-size:14px;line-height:1.56;margin:0}
+.value-section .value-footnote{color:#acc7b5;text-align:center;font-size:12px;margin:22px 0 0}
+@media(max-width:1050px){.nav{gap:18px}.links{gap:15px}.nav-actions{gap:8px}.value-section .value-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.links{display:none}.nav-actions>.pill{display:none}.nav{justify-content:space-between}.language-button{min-width:32px;min-height:32px;font-size:19px}.language-switch{gap:1px}.value-section .value-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.value-section .value-item{padding:20px 16px;min-height:205px}.value-section .value-item h3{font-size:18px}.value-section .value-item p{font-size:13px}}
+@media(max-width:430px){.value-section .value-grid{grid-template-columns:1fr}.value-section .value-item{min-height:0}.value-section .value-icon{margin-bottom:12px}.value-section .value-intro{margin-bottom:26px}.nav-actions{gap:3px}.language-button{min-width:30px}}
