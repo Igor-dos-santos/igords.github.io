@@ -187,3 +187,10 @@ header .brand-icon{width:65px;height:53px;object-fit:contain;flex:none;filter:dr
 .founder-contact-art img{width:100%;height:230px;object-fit:cover;border-radius:18px;box-shadow:0 15px 35px #0003}
 @media(max-width:950px){.founder-hero-grid{gap:28px}.founder-values-inner{grid-template-columns:1fr 1fr}.founder-values-inner .pill{justify-self:start}.name-story-grid{gap:34px}.founding-statement{grid-template-columns:175px 1fr;gap:28px}}
 @media(max-width:700px){.founder-hero{padding:62px 0 70px}.founder-hero-grid,.name-story-grid,.founder-values-inner,.founder-contact{grid-template-columns:1fr}.founder-hero h1{font-size:clamp(47px,10vw,67px)}.founder-portrait-wrap{max-width:310px;margin-top:12px}.founder-portrait-caption{right:0}.journey-grid{grid-template-columns:1fr}.journey-card img{height:200px}.founding-statement{grid-template-columns:1fr;gap:8px;padding:26px}.founding-year{font-size:70px}.name-story-image{min-height:225px}.name-story-image img{width:245px}.name-story-image .name-orbit{width:280px;height:100px}.story-section{padding-block:64px}.name-section{padding-block:65px}.founder-contact-art{display:none}}
+
+/* Compact founder image on the homepage About teaser */
+.about-teaser .founder-teaser-photo{position:relative;min-height:340px;max-width:540px;width:100%;overflow:hidden;border-radius:25px;background:radial-gradient(circle at 35% 30%,#49805a,#0a3427 70%);box-shadow:0 20px 50px #12391e27}
+.about-teaser .founder-teaser-photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#06291f9a,transparent 45%)}
+.about-teaser .founder-teaser-photo img{display:block;height:340px;width:100%;object-fit:cover;object-position:center 30%;filter:saturate(.9)}
+.founder-teaser-label{position:absolute;z-index:1;left:24px;bottom:23px;color:#f5d79b;letter-spacing:.13em;font-size:11px;font-weight:800;text-shadow:0 2px 13px #0009}
+@media(max-width:700px){.about-teaser .founder-teaser-photo{min-height:250px}.about-teaser .founder-teaser-photo img{height:265px}.founder-teaser-label{font-size:10px;left:18px;bottom:18px}}
