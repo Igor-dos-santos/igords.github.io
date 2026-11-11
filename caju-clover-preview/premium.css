@@ -216,3 +216,9 @@ header .brand-icon{display:block;width:84px;height:58px;object-fit:contain;flex:
 .about-teaser .founder-teaser-photo{max-width:435px;min-height:0;aspect-ratio:3/4;justify-self:center}
 .about-teaser .founder-teaser-photo img{height:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 38%}
 @media(max-width:700px){.about-teaser .founder-teaser-photo{max-width:310px;aspect-ratio:3/4}.about-teaser .founder-teaser-photo img{height:100%}}
+
+/* Keep About accessible even when the desktop navigation collapses. */
+.mobile-about{display:none;text-decoration:none;font-size:13px;font-weight:700;color:#f8ebd7;white-space:nowrap;border:1px solid rgba(233,197,119,.5);border-radius:999px;padding:8px 12px;transition:background .2s,border-color .2s}
+.mobile-about:hover,.mobile-about:focus-visible{background:#f6ba5140;border-color:#f6ba51;color:#fff}
+@media(max-width:700px){.mobile-about{display:inline-flex;align-items:center;justify-content:center}.nav-actions{gap:8px}}
+@media(max-width:440px){.mobile-about{padding:7px 10px;font-size:12px}.nav{gap:7px}.nav-actions{gap:5px}.brand-name{font-size:16px}.brand-name small{font-size:7px;letter-spacing:.1em}header .brand-icon{width:43px;height:35px}.language-switch{padding:2px}.language-button{min-width:27px;min-height:29px;font-size:16px}}
