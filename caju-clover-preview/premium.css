@@ -8,3 +8,18 @@ header .brand-icon{width:65px;height:53px;object-fit:contain;flex:none;filter:dr
 
 /* Service icons precisely styled to match the approved mockup */
 .service .ic{display:flex;align-items:center;justify-content:center;width:58px;height:58px;min-width:58px;border:0;border-radius:16px;background:linear-gradient(145deg,#f3f8dd 0%,#e3efb5 100%);color:#08742c;box-shadow:0 5px 11px rgba(62,87,28,.17);margin:0}.service .ic svg{display:block;width:37px;height:37px;flex:none;overflow:visible}.service{grid-template-columns:58px minmax(0,1fr);column-gap:18px}
+
+/* Focused homepage hero: concise copy and uncluttered product preview */
+.hero-copy{max-width:600px;position:relative;z-index:2}
+.hero .eyebrow{font-size:11px;letter-spacing:.18em}
+.hero h1{font-size:clamp(43px,4.9vw,76px);line-height:1.06}
+.hero p{max-width:510px;font-size:clamp(16px,1.25vw,19px);line-height:1.65;color:#d9e8dd;margin:27px 0 0}
+.hero .cta{margin-top:30px}
+.hero .cta .btn{min-width:170px}
+.screen-preview-label{font-size:11px;font-weight:750;letter-spacing:.15em;color:#dbefc2}
+.screen-hero{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:17px}
+.screen-hero h3{margin:0;font-size:clamp(31px,3vw,45px);line-height:1.08}
+.screen-hero .mock-cta{margin-top:8px}
+.hero .screen-foot i{opacity:.85}
+@media(max-width:900px){.hero-copy{max-width:690px}.hero-inner{gap:16px}}
+@media(max-width:600px){.hero h1{font-size:clamp(39px,10vw,54px)}.hero .cta .btn{min-width:0}.hero p{margin-top:18px}.screen-preview-label{font-size:9px}}
