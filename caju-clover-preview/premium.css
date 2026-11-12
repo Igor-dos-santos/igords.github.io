@@ -234,3 +234,36 @@ header .brand-icon{display:block;width:84px;height:58px;object-fit:contain;flex:
 @media(max-width:1000px){.services .service-flip{height:350px;min-height:350px}}
 @media(max-width:600px){.services .service-flip{height:320px;min-height:320px}.service-flip .service-back{padding:42px 23px 20px}.service-flip .service-back h3{font-size:20px}.service-flip .service-back p{font-size:14px;line-height:1.58}}
 @media(max-width:380px){.services .service-flip{height:355px;min-height:355px}}
+
+
+/* Consistent desktop and mobile language controls */
+header .nav{gap:16px}
+header .nav>.logo{flex:0 1 auto;min-width:0}
+header .nav-actions{display:flex!important;flex:0 0 auto;align-items:center;gap:12px}
+header .language-switch{display:inline-flex!important;visibility:visible!important;align-items:center;gap:3px;flex:0 0 auto}
+header .language-button{display:inline-flex!important;align-items:center;justify-content:center;gap:7px;min-width:74px;min-height:38px;padding:6px 9px;white-space:nowrap}
+header .flag-symbol{display:inline-block;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:20px;line-height:1;opacity:1;filter:none}
+header .language-code{font-size:11px;font-weight:800;letter-spacing:.06em;color:#f8ecd4}
+header .links{flex:1 1 auto;justify-content:center;gap:18px}
+footer .container.footer-centered{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;max-width:900px}
+footer .footer-content{display:flex;flex-direction:column;align-items:center;gap:0;width:100%}
+footer .footer-content p{margin:9px 0 0;text-align:center}
+footer .footer-copyright{font-size:13px;color:#bfd3c3;margin-top:20px!important}
+@media(min-width:701px) and (max-width:1170px){
+  header .nav-actions>.pill{display:none}
+  header .links{gap:13px;font-size:12px}
+  header .language-button{min-width:65px;padding:6px}
+}
+@media(max-width:700px){
+  header .links{display:none}
+  header .nav-actions>.pill{display:none}
+  header .language-switch{display:inline-flex!important}
+  header .language-button{min-width:32px;min-height:33px;padding:4px}
+  header .language-code{display:none}
+  header .flag-symbol{font-size:19px}
+  footer .container.footer-centered{align-items:center}
+}
+@media(max-width:440px){
+  header .language-button{min-width:28px;min-height:29px;padding:2px}
+  header .flag-symbol{font-size:17px}
+}
