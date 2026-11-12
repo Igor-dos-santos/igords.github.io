@@ -283,3 +283,37 @@ header .language-button .language-code{display:inline-block!important}
   header .language-button .flag-icon{width:16px;height:11px}
   header .language-button .language-code{font-size:9px}
 }
+
+
+/* Stable, smooth card rotations: avoid ancestor hover/reveal transforms flattening 3D layers. */
+.services .service-flip,
+.services .service-flip:hover,
+.services .service-flip:focus-within,
+.services .service-flip.reveal,
+.services .service-flip.reveal.visible{
+  transform:none!important;
+  opacity:1!important;
+  transition:none!important;
+  overflow:visible;
+  box-shadow:none;
+}
+.services .service-flip{perspective:1400px;-webkit-perspective:1400px;contain:layout}
+.service-flip .service-flip-inner{
+  transform-style:preserve-3d;
+  -webkit-transform-style:preserve-3d;
+  transform:rotateY(0deg);
+  transition:transform 520ms cubic-bezier(.22,.72,.18,1);
+  will-change:transform;
+}
+.service-flip.is-flipped .service-flip-inner{transform:rotateY(180deg)}
+.service-flip .service-face{
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.service-flip .service-front{transform:rotateY(0deg) translateZ(1px)}
+.service-flip .service-back{transform:rotateY(180deg) translateZ(1px)}
+.service-flip .service-face::after{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+@media(prefers-reduced-motion:reduce){
+  .service-flip .service-flip-inner{transition-duration:0ms;will-change:auto}
+}
